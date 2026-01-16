@@ -92,7 +92,7 @@ function App() {
     setLoading(true);
     let count = 0;
 
-    Papa.parse('/Catalogo-SIGA_MEF.csv', {
+    Papa.parse('Catalogo-SIGA_MEF.csv', {
       download: true,
       header: true,
       skipEmptyLines: true,
