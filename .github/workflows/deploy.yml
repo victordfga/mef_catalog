@@ -46,6 +46,13 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Debug Output
+        run: |
+          echo "Contenido de dist:"
+          ls -lh dist
+          echo "Verificando CSV:"
+          ls -lh dist/Catalogo-SIGA_MEF.csv
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
