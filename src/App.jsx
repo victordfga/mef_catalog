@@ -148,9 +148,18 @@ function App() {
     }
 
     // 2. Aplicar filtros adicionales sobre la colección
-    // Esto es mucho más rápido que filtrar sobre los 600k base
     collection = collection.filter(item => {
-      const matchTipo = tipoFiltro === 'TODOS' || item.TIPO_BIEN === tipoFiltro;
+      let matchTipo = true;
+      if (tipoFiltro !== 'TODOS') {
+        if (tipoFiltro === 'O') {
+          matchTipo = item.NOMBRE_UNIDAD_MEDIDA === 'OBRA';
+        } else if (tipoFiltro === 'S') {
+          matchTipo = item.TIPO_BIEN === 'S' && item.NOMBRE_UNIDAD_MEDIDA !== 'OBRA';
+        } else {
+          matchTipo = item.TIPO_BIEN === tipoFiltro;
+        }
+      }
+
       const matchClase = !filtros.clase || item.NOMBRE_CLASE === filtros.clase;
       const matchFamilia = !filtros.familia || item.NOMBRE_FAMILIA === filtros.familia;
 
@@ -241,6 +250,10 @@ function App() {
                   className={tipoFiltro === 'S' ? 'active' : ''}
                   onClick={() => { setTipoFiltro('S'); setPage(1); }}
                 >Servicios</button>
+                <button
+                  className={tipoFiltro === 'O' ? 'active' : ''}
+                  onClick={() => { setTipoFiltro('O'); setPage(1); }}
+                >Obras</button>
               </div>
             </div>
 
@@ -295,8 +308,8 @@ function App() {
               const codigoSiga = `${item.GRUPO_BIEN}${item.CLASE_BIEN}${item.FAMILIA_BIEN}${item.ITEM_BIEN}`;
               return (
                 <article key={item.id} className="item-card clickable" onClick={() => handleCardClick(item)}>
-                  <div className="badge-tipo" data-tipo={item.TIPO_BIEN}>
-                    {item.TIPO_BIEN === 'B' ? 'BIEN' : 'SERVICIO'}
+                  <div className="badge-tipo" data-tipo={item.NOMBRE_UNIDAD_MEDIDA === 'OBRA' ? 'O' : item.TIPO_BIEN}>
+                    {item.NOMBRE_UNIDAD_MEDIDA === 'OBRA' ? 'OBRA' : (item.TIPO_BIEN === 'B' ? 'BIEN' : 'SERVICIO')}
                   </div>
                   <div className="item-content">
                     <span className="code">{codigoSiga}</span>
@@ -336,8 +349,8 @@ function App() {
             <button className="close-modal" onClick={() => setSelectedItem(null)}><X size={24} /></button>
 
             <header className="modal-header-detail">
-              <div className="badge-tipo large" data-tipo={selectedItem.TIPO_BIEN}>
-                {selectedItem.TIPO_BIEN === 'B' ? 'BIEN' : 'SERVICIO'}
+              <div className="badge-tipo large" data-tipo={selectedItem.NOMBRE_UNIDAD_MEDIDA === 'OBRA' ? 'O' : selectedItem.TIPO_BIEN}>
+                {selectedItem.NOMBRE_UNIDAD_MEDIDA === 'OBRA' ? 'OBRA' : (selectedItem.TIPO_BIEN === 'B' ? 'BIEN' : 'SERVICIO')}
               </div>
               <h2>Detalle del Ítem</h2>
             </header>

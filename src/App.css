@@ -371,6 +371,11 @@ select:focus {
   color: #d97706;
 }
 
+.badge-tipo[data-tipo="O"] {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
 .item-card h3 {
   font-size: 1.125rem;
   font-weight: 700;
