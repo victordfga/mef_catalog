@@ -401,7 +401,7 @@ function App() {
 
       <footer className="main-footer">
         <div className="container">
-          <p>© 2026 Ministerio de Economía y Finanzas - Consulta Dinámica del Catálogo SIGA</p>
+          <p>Consulta Dinámica del Catálogo basado en Catalogo MEF 2026</p>
         </div>
       </footer>
     </div>
