@@ -235,7 +235,7 @@ function App() {
               </div>
             </div>
 
-            <div className="form-group">
+            <div className="form-group span-2">
               <label>Tipo de Recurso</label>
               <div className="btn-group">
                 <button

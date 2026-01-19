@@ -249,7 +249,7 @@ select:focus {
 
 .btn-group button {
   flex: 1;
-  padding: 0.6rem;
+  padding: 0.6rem 0.4rem;
   border: none;
   background: transparent;
   border-radius: 6px;
@@ -258,6 +258,7 @@ select:focus {
   font-size: 0.875rem;
   transition: var(--transition);
   color: var(--secondary);
+  white-space: nowrap;
 }
 
 .btn-group button.active {
