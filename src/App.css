@@ -155,7 +155,7 @@ body::after {
 
 .search-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
 
@@ -245,6 +245,7 @@ select:focus {
   padding: 0.4rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
+  width: 100%;
 }
 
 .btn-group button {
